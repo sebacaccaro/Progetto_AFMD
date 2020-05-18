@@ -1,0 +1,38 @@
+\usepackage{float}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+
+% Per numerare i paragrafi
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\let\oldpar\paragraph
+\renewcommand{\paragraph}[1]{\oldpar{#1}\mbox{}\\}
+
+%Comando per creare nuove definizioni stile blocco
+\newcommand{\definition}[2]{
+	\begin{table}[H]
+	\centering
+		\begin{tabular}{|p{0.9\linewidth}}
+		\textbf{#1}\\ %Titolo della definzione
+		#2\\%Testo della definizione
+		\end{tabular}
+	\end{table}
+	\noindent
+}
+
+\newcommand{\df}[2]{\definition{#1}{#2}}
+
+\input{insbox.tex}
+\newcommand{\lessonDate}[1]{\InsertBoxR{0}{\tiny{#1}}}
+
+\newcommand{\E}{\`E\space}
+
+\usepackage{listings}
+\lstset{language=C++,
+                keywordstyle=\color{blue},
+                stringstyle=\color{red},
+                commentstyle=\color{green},
+                morecomment=[l][\color{magenta}]{\#}
+}

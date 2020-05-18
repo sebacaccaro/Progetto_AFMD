@@ -1,0 +1,77 @@
+\usepackage{float}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{mathtools,amssymb}
+\usepackage{amsmath}
+
+%Pro and cons
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\pro}{\item[\cmark]}
+\newcommand{\con}{\item[\xmark]}
+
+\renewcommand{\tilde}{$\sim$}
+
+%sets
+\newcommand{\set}[1]{\{#1\}}
+
+% Per numerare i paragrafi
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+\let\oldpar\paragraph
+\renewcommand{\paragraph}[1]{\oldpar{#1}\mbox{}\\}
+
+%Per metter una freccia in modo fast
+\newcommand{\fdx}{$\rightarrow$\ }
+
+%Comando per creare nuove definizioni stile blocco
+\newcommand{\definition}[2]{
+	\begin{table}[H]
+	\centering
+		\begin{tabular}{|p{0.9\linewidth}}
+		\textbf{#1}\\ %Titolo della definzione
+		#2\\%Testo della definizione
+		\end{tabular}
+	\end{table}
+	\noindent
+}
+
+%Comando esempio
+\newcommand{\esempio}[1]{
+	\begin{table}[H]
+	\centering
+		\begin{tabular}{p{0.9\linewidth}}
+		\textbf{EX}\\ %Titolo della definzione
+		\hline
+		#1\\%Testo della definizione
+		\end{tabular}
+	\end{table}
+	\noindent
+}
+
+\newcommand{\df}[2]{\definition{#1}{#2}}
+
+\input{insbox.tex}
+\newcommand{\lessonDate}[1]{\InsertBoxR{0}{\tiny{#1}}}
+
+\newcommand{\E}{\`E\space}
+
+\usepackage{listings}
+\lstset{language=C++,
+                keywordstyle=\color{blue},
+                stringstyle=\color{red},
+                commentstyle=\color{green},
+                morecomment=[l][\color{magenta}]{\#}
+}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% Tema scuro
+%\usepackage{xcolor}
+%
+%\pagecolor[rgb]{0.25,0.25,0.25}
+%\color[rgb]{1,1,1}
