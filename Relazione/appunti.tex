@@ -1,11 +1,10 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[italian]{babel}
+\usepackage[english]{babel}
 
 % Questo comando importa i miei comandi personali che semplificano due o tre cagate
 \input{.Latex_stuff/commands.tex}
-
 
 
 \sloppy
@@ -20,35 +19,69 @@
 \normalsize{A.A.2019/2020}
 \end{center}
 \end{titlepage}
+\pagenumbering{Roman}
+
+\vspace*{\fill}
+\textit{We declare that this material, which We now submit for assessment, is entirely our own work and has not been taken from the work of others, save and to the extent that such work has been cited and acknowledged within the text of our work. We understand that plagiarism, collusion, and copying are grave and serious offences in the university and accept the penalties that would be imposed should we engage in plagiarism, collusion or copying. This assignment, or any part of it, has not been previously submitted by us or any other person for assessment on this or any other course of study.}
+\vspace*{\fill}
+
+\newpage
+
 \tableofcontents
 
 \clearpage
 %magari c'è qualcosa di un po piu slick di una section per questo
-\section{Property declaration}
-We declare that this material, which We now submit for assessment, is entirely our own work and has not been taken from the work of others, save and to the extent that such work has been cited and acknowledged within the text of our work. We understand that plagiarism, collusion, and copying are grave and serious offences in the university and accept the penalties that would be imposed should we engage in plagiarism, collusion or copying. This assignment, or any part of it, has not been previously submitted by us or any other person for assessment on this or any other course of study.
 
+\pagenumbering{arabic}
+
+\newpage
 \section{Introduction}
 The Objective of this project is to build a Turkish Lira banknotes image recognizer through a Convolutional Neural Network.
 The proposed solution is ... (esporre richiesta, step che verranno eseguiti, obiettivi delle varie fasi, predizione dei possibili risultati raggiungibili)
 
+\newpage
 \section{The Turkish Lira banknotes dataset}
-The chosen dataset <add ref> is originally composed of 1000 images of Turkish Lira banknotes, organized in folders grouping banknotes by their value and easily splittable in 2 main groups, training and validation sets.
+The chosen dataset <add ref> is originally composed of 6000 images of Turkish Lira banknotes, organized in folders grouping banknotes by their value and already splitted in training and validation set.
 
+\newpage
 \subsection{Preprocessing techniques applied to the dataset}
 batching ecc
 
+\newpage
 \subsection{Considered algorithms and their implmentation}
 ?
 
 %meglio fare una sezione a riguardo secondo me, ci mettiamo tutta la parte sul batching, memorizzazione , uso di disco e ram e scaling delle immagini  
+\newpage
 \section{Scalability of the proposed solution}
 
 %esporre i modelli usati e i relativi risultati in ordine temporale in modo da fornire una sequenza dei ragionamenti fatti
+\newpage
 \section{Experiments and results}
 
 %solita roba da conclusioni
+\newpage
 \section{Conclusions}
+Esempio di citazione\cite{latexcompanion}
 
+\newpage
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{9}
+\bibitem{latexcompanion} 
+Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
+\textit{The \LaTeX\ Companion}. 
+Addison-Wesley, Reading, Massachusetts, 1993.
+
+\bibitem{einstein} 
+Albert Einstein. 
+\textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German) 
+[\textit{On the electrodynamics of moving bodies}]. 
+Annalen der Physik, 322(10):891–921, 1905.
+
+\bibitem{knuthwebsite} 
+Knuth: Computers and Typesetting,
+\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+\end{thebibliography}
 
 
 \end{document}
