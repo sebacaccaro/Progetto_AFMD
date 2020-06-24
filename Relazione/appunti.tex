@@ -7,6 +7,7 @@
 \input{.Latex_stuff/commands.tex}
 
 
+
 \sloppy
 \begin{document}
 
@@ -37,15 +38,23 @@
 \newpage
 \section{Introduction}
 The Objective of this project is to build a Turkish Lira banknotes image recognizer through a Convolutional Neural Network.
-The proposed solution is ... (esporre richiesta, step che verranno eseguiti, obiettivi delle varie fasi, predizione dei possibili risultati raggiungibili)
+The proposed solution, based on Tensorflow libraries, contains steps to dinamically download the dataset, preprocess the images in it and use the processed images to train a 
+Convolutional Neural Network in recognizing and classifying them.
+Since the given dataset contains many images and since the request is to classify some precise details of them, it's expected to achieve good results from the proposed solution and in particular
+from the proposed model.
 
 \newpage
 \section{The Turkish Lira banknotes dataset}
-The chosen dataset <add ref> is originally composed of 6000 images of Turkish Lira banknotes, organized in folders grouping banknotes by their value and already splitted in training and validation set.
+The chosen dataset <add ref> is originally composed of 6000 images of Turkish Lira banknotes, 
+organized in folders grouping banknotes by their value and already splitted in training and validation set.
 
 \newpage
 \subsection{Preprocessing techniques applied to the dataset}
-batching ecc
+To start the pre-processing phase, it's needed to scale the images to a more appropriate size to not overload the machine memory; the size scale factor used in this project is 5.
+The given dataset was provided with two text files listing the images belonging to the training and to the validation datasets; using this lists, the images files have been divided in the
+two respective labeled datasets. 
+The training dataset has been created using a "prefetch dataset" and the validation dataset has been created using a "repeat dataset" both using also batching and caching techniques.
+
 
 \newpage
 \subsection{Considered algorithms and their implmentation}
