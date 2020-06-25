@@ -69,9 +69,48 @@ The Scalability of this project is granted by (batching, caching, img scaling, ?
 \newpage
 \section{Experiments and results}
 Different models have been tested during the developing process; in this section some of those will be shown and the relative results will be discussed.
-(aggiungere modelli e screen dei grafici che fanno spessore e cosa va e cosa non va nei vari modelli)
+\subsection{Model summary}
+For each tested model the following data will be reported:
+\begin{itemize}
+\item The NN architecture
+\item Hyperparameters used
+\item Data on accuracy for three repeated runs
+\item Graph of one of the runs
+\item Comment on the architecture and results
+\end{itemize}
+Each model will be trained for exactly 20 epochs in order to get consistent results.\\
+In the layer tables the input  layer will not be reported, as it always corresponds to resized image size (\texttt{144,256,3}).\\
+Also note that some abbreviations are used in the Layer Config field in order to for the table to fit:
+\begin{itemize}
+\item \texttt{k} stands for \texttt{kernel size}
+\item \texttt{s} stands for \texttt{strides}
+\item \texttt{f} stands for \texttt{filters}
+\end{itemize}
 
-%solita roba da conclusioni
+%Commands needed for table
+\newcommand{\conv}{Convolution(\texttt{Conv2d})}
+\newcommand{\convP}[3]{\texttt{k=#1, s=#2, f=#3}}
+\newcommand{\convKSF}[3]{\convP{#1}{#2}{#3}}
+
+\newcommand{\flt}{Flatten(\texttt{Flatten})}
+
+\newcommand{\dns}{Dense(\texttt{Dense})}
+\newcommand{\dnsP}[1]{u = #1}
+
+\subsection{Models}
+
+\subsubsection{Baseline Model}
+\input{Models/baseline.tex}
+
+\subsubsection{Convolution Model}
+\input{Models/conv.tex}
+
+
+
+
+
+
+
 \newpage
 \section{Conclusions}
 As seen in the previous sections, after a few experiments, this project has been succesful in classifying the images of Turkish 

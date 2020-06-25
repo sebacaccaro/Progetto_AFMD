@@ -11,7 +11,6 @@ model.add(layers.Conv2D(filters=8, kernel_size=5, strides=2, activation='relu', 
 model.add(layers.Conv2D(filters=12, kernel_size=3, strides=1, activation='relu'))
 model.add(layers.Conv2D(filters=15, kernel_size=3, strides=1, activation='relu'))
 model.add(layers.Conv2D(filters=18, kernel_size=3, strides=1, activation='relu')) # ora e' abbastanza overffittoso: piu tardi sperimemto con max pooling e dimensione delle immagini
-model.add(layers.Conv2D(filters=22, kernel_size=3, strides=1, activation='relu')) #senza questo ho 98.7
 model.add(layers.Flatten())
 model.add(layers.Dense(64, activation='relu')) #TODO: check if relu it's the loss function we should be using
 model.add(layers.Dense(len(CLASS_NAMES),activation="softmax"))  #Perchè sotmax?
