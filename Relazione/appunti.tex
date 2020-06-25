@@ -85,6 +85,7 @@ Also note that some abbreviations are used in the Layer Config field in order to
 \item \texttt{k} stands for \texttt{kernel size}
 \item \texttt{s} stands for \texttt{strides}
 \item \texttt{f} stands for \texttt{filters}
+\item \texttt{p} stands for \texttt{pool size}
 \end{itemize}
 
 %Commands needed for table
@@ -95,7 +96,10 @@ Also note that some abbreviations are used in the Layer Config field in order to
 \newcommand{\flt}{Flatten(\texttt{Flatten})}
 
 \newcommand{\dns}{Dense(\texttt{Dense})}
-\newcommand{\dnsP}[1]{u = #1}
+\newcommand{\dnsP}[1]{\texttt{u=#1}}
+
+\newcommand{\pool}{MaxPooling(\texttt{MaxPooling2D})}
+\newcommand{\poolN}{\texttt{p=2x2}}
 
 \subsection{Models}
 
@@ -104,6 +108,9 @@ Also note that some abbreviations are used in the Layer Config field in order to
 
 \subsubsection{Convolution Model}
 \input{Models/conv.tex}
+
+\subsubsection{Convolution and Pooling Model}
+\input{Models/conv_pool.tex}
 
 
 
