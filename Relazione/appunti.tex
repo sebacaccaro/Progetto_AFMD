@@ -50,10 +50,23 @@ organized in folders grouping banknotes by their value and already splitted in t
 
 \newpage
 \subsection{Preprocessing techniques applied to the dataset}
-To start the pre-processing phase, it's needed to scale the images to a more appropriate size to not overload the machine memory; the size scale factor used in this project is 5.
-The given dataset was provided with two text files listing the images belonging to the training and to the validation datasets; using this lists, the images files have been divided in the
-two respective labeled datasets. 
-The training dataset has been created using a "prefetch dataset" and the validation dataset has been created using a "repeat dataset" both using also batching and caching techniques.
+In this section the following preprocessing techniques applied to the considered dataset will be discussed:
+\begin{itemize}
+	\item image scaling
+	\item training and validation sets creation
+\end{itemize}
+
+Regarding the image scaling, the given images have a size of 720x1280; to not overload the memory of the computing machine it has been reduced by 5 times resulting in a size of 140x256 per image.
+For the training and validation sets, they have been created starting from two text files, provided with the dataset, listing all the images that needed to be used for the training or validation phases.
+The training dataset array has then been processed using shuffling, batching and repeating techniques to prepare it for the learning process.
+The validation dataset array has instead been processed using only batching and repeating; for both the datasets, the batches size has been 
+set to 32 images per batch.
+
+The training dataset has also been processed using the prefetch technique, this
+allows later elements to be prepared while the current element is being
+processed. This often improves latency and throughput, at the cost of
+using additional memory to store prefetched elements.
+
 
 
 \newpage
@@ -122,7 +135,7 @@ Also note that some abbreviations are used in the Layer Config field in order to
 \section{Conclusions}
 As seen in the previous sections, after a few experiments, this project has been succesful in classifying the images of Turkish 
 Lira banknotes with high accuracy and low data loss.
-(altro?)
+(altro?) aggiungere migliori risultati ottenuti - 
 
 
 
