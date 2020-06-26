@@ -1,0 +1,21 @@
+When deciding which is best, the following factors should be taken into account:
+\begin{itemize}
+\item \textbf{Accuracy}: of course, the more accurate the model, the better. The measure to look for is validation accuracy.
+\item \texttt{Generalization}: the model needs to work with images outside of the train dataset. If the model generalizes well, the difference between its accuracy and validation accuracy should be little to none.
+\item \texttt{Number of parameters:} if two models have similar performances, the one with less parameters is to be preferred. Having less parameters generally makes the model faster in training and evaluation. It also comes with the added benefit of having a lower chance of overfitting.
+\end{itemize}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccc cccc}
+	\textbf{\#} & \textbf{Loss} & \textbf{V.Loss} & \textbf{Acc.} & \textbf{V.Acc} & \textbf{$\Delta$ Acc.} & \textbf{Params.}\\ \hline
+	1 & 0.0029 & 0.0456 & 0.9996 & 0.9814 & 0.0185 & 1,321,794\\ 
+	2 & 0.0001 & 0.0653 & 1.0000	& 0.9889 & 0.0112 & 1,195,665\\
+	3 & 0.0003 & 0.0341 & 1.0000 & 0.9911 & 0.0893 & 172,689\\
+	4 & 0.0606 & 0.0517 & 0.9820 & 0.9873 & -0.0054 & 172,689\\
+	5 & 0.0253 & 0.0434 & 0.9964 & 0.9918 & 0.0046 & 180,655\\
+	\end{tabular}
+	\caption{Average performance of the various model}
+\end{table}
+
+On this grounds it's clear that models 4 and 5 are the best candidates for the given dataset.
