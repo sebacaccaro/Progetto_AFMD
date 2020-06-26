@@ -6,6 +6,7 @@
 	\flt		& /					& relu		& \texttt{20640}		& \texttt{0}\\
 	\dns		& \dnsP{64}			& relu		& \texttt{64}		& \texttt{1321024}\\
 	\dns		& \dnsP{6}			& softmax	& \texttt{64}		& \texttt{390}\\
+	\multicolumn{4}{r}{\textbf{TOTAL}}&{\textbf{1,321,794}}\\
 	\end{tabular}
 	%Total params: 1,321,794
 	%Trainable params: 1,321,794
@@ -19,6 +20,7 @@
 	Batch Size 	& 32 \\
 	Optimizer 	& Adam \\
 	Base lr		& 0.001 \\
+	Epochs		& 20\\
 	\end{tabular}
 \end{table}
 
@@ -40,4 +42,9 @@
 	\end{tabular}
 \end{table}
 
+This is a very bare-bone, used to check everything is working in the net and to get a reference for the next iterations. Nevertheless, we can make a few observation:
+\begin{itemize}
+\item There is some overfitting occurring. This is due to the fact the image is only slightly reduced in the convolution, thereby creating the need for a substantial number of parameters between the flat layer and the first dense layer.
+\item The training basically stall after the 10th epoch, as it has already reach maximum accuracy on the train dataset.
+\end{itemize}
 
