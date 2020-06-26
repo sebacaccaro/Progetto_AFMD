@@ -78,7 +78,6 @@ For each tested model the following data will be reported:
 \item Graph of one of the runs
 \item Comment on the architecture and results
 \end{itemize}
-Each model will be trained for exactly 20 epochs in order to get consistent results.\\
 In the layer tables the input  layer will not be reported, as it always corresponds to resized image size (\texttt{144,256,3}).\\
 Also note that some abbreviations are used in the Layer Config field in order to for the table to fit:
 \begin{itemize}
@@ -86,6 +85,7 @@ Also note that some abbreviations are used in the Layer Config field in order to
 \item \texttt{s} stands for \texttt{strides}
 \item \texttt{f} stands for \texttt{filters}
 \item \texttt{p} stands for \texttt{pool size}
+\item \texttt{r} stands for \texttt{rate}
 \end{itemize}
 
 %Commands needed for table
@@ -101,6 +101,10 @@ Also note that some abbreviations are used in the Layer Config field in order to
 \newcommand{\pool}{MaxPooling(\texttt{MaxPooling2D})}
 \newcommand{\poolN}{\texttt{p=2x2}}
 
+\newcommand{\drop}{Dropout(\texttt{Dropout})}
+\newcommand{\dropR}[1]{\texttt{r=#1}}
+
+\newcommand{\bat}{Batch Norm.(\texttt{BatchN.})}
 \subsection{Models}
 
 \subsubsection{Baseline Model}
@@ -111,6 +115,12 @@ Also note that some abbreviations are used in the Layer Config field in order to
 
 \subsubsection{Convolution and Pooling Model}
 \input{Models/conv_pool.tex}
+
+\subsubsection{Convolution and Pooling Model with Dropout}
+\input{Models/conv_pool_drop.tex}
+
+\subsubsection{Batch Normalization Model}
+\input{Models/bn.tex}
 
 
 

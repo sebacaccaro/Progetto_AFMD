@@ -1,3 +1,4 @@
+%Questo modello fa più schifo di quelli di prima, dropout scartato
 \begin{table}[H]
     \centering
 	\begin{tabular}{lcccc}
@@ -11,9 +12,11 @@
 	\conv	& \convKSF{3}{1}{15}	& relu		& \texttt{18,32,15} 		& \texttt{1635}\\
 	\pool	& \poolN				&	/		& \texttt{9,16,18}		& 0	\\
 	\conv	& \convKSF{3}{1}{18}	& relu		& \texttt{9,16,18} 		& \texttt{2448}\\
+	\drop	& \dropR{0.75}		&	/		& \texttt{9,16,18}		& 0\\
 	
 	\flt		& /					& /			& \texttt{2592}			& \texttt{0}\\
 	\dns		& \dnsP{64}			& relu		& \texttt{64}			& \texttt{165952}\\
+	\drop	& \dropR{0.75}		&	/		& \texttt{64}			& 0\\
 	\dns		& \dnsP{6}			& softmax	& \texttt{6}				& \texttt{390}\\
 	\end{tabular}
 	%Total params: 172,689
@@ -36,7 +39,7 @@
 
 \begin{figure}[H]
 	\begin{center}
-	\includegraphics[width=\linewidth]{Immagini/conv-pool-1}
+	\includegraphics[width=\linewidth]{Immagini/conv-drop-pool-1}
 	\caption{Graph of the first run}
 	\end{center}
 \end{figure}
@@ -44,9 +47,9 @@
 	\centering
 	\begin{tabular}{cccccc}
 		\textbf{Run} &\textbf{Loss}&\textbf{V.Loss} &\textbf{Acc.}&\textbf{V.Acc.}&\textbf{$\Delta$ Acc.} \\ \hline
-		1   & 1.8558e-04 &  0.0429  & 1.0000    & 0.9933    & 0.0067\\
-		2   & 6.4439e-04 &  0.0461  & 1.0000    & 0.9866    & 0.0134\\
-		3   & 1.2224e-04 &  0.0133  & 1.0000    & 0.9933    & 0.0067\\
-		\textbf{Avg} & \textbf{3.1740e-04} &  \textbf{0.0341}  & \textbf{1.0000}    & \textbf{0.9911}    & \textbf{0.0893}
+		1   & 0.0582    & 0.0666    & 0.9817    & 0.9821    & -0.0004\\
+		2   & 0.0063    & 0.0269    & 0.9987    & 0.9933    & 0.0054\\
+		3   & 0.1172    & 0.0615    & 0.9654    & 0.9866    & -0.0212\\
+		\textbf{Avg} & \textbf{0.0606}    & \textbf{0.0517}    & \textbf{0.9820}    & \textbf{0.9873}    & \textbf{-0.0054}
 	\end{tabular}
 \end{table}
