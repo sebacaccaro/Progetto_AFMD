@@ -48,12 +48,12 @@
 	\end{tabular}
 \end{table}
 
-This models is an iteration of the baseline model, achieved by adding four more convolution. The convolution have been added with the following logic in mind:
+This model is an iteration of the baseline model, achieved by adding four more convolutions in the network. The convolutions have been added with the following logic in mind:
 \begin{itemize}
-\item The first two convolutions have a stride greater than 1, and that leads to a minimal reductions in the size of the tensor. This in turn should limit the number of parameters needed for training and in turn reduce overfitting.
-\item The layers are set in way to progressively increase the number of channel and reduce height and width.
+\item The first two convolutions have a stride greater than 1 and that leads to a minimal reduction in the size of the tensor. This in turn should limit the number of parameters needed for training and in turn reduce overfitting.
+\item The layers are set in a way that progressively increase the number of channels and reduce height and width.
 \end{itemize}
-The results show the model is slightly less overfitting than the baseline. Both models reached 1.0000 accuracy on the training set, so this translate in an increased validation accuracy.
+The results show the model is slightly less overfitting than the baseline. Both models reached 100\% accuracy on the training set and this involves an increased validation accuracy.
 %NOTARE CHE AGGIUNGERE PIU LIVELLI NON AIUTA
 
 
