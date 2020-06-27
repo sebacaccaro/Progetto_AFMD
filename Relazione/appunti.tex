@@ -161,9 +161,9 @@ Every image is also decoded in a 3D tensor with 3 channels corresponding to its 
 
 \subsubsection{Dataset loading and batch splitting}
 For both the training and the validation datasets a list is created containing the path of their images. 
-Every element in the lists is then mapped to an image-label. The lists are then used to create the actual dataset variables.\\
+Every element in the lists is then mapped to an image-label pair. The lists are then used to create the actual dataset variables.\\
 Each dataset is divided into batches. After some tweaking, a number of 32 elements per batch proved to be optimal for the considered application.\\
-Each dataset is set to repeat, allowing for multiple epochs of training on the same batches. Moreover the training dataset is set to be prefetched: 
+Each dataset is set to repeat, allowing for multiple epochs of training on the same batches. Moreover, the training dataset is set to be prefetched: 
 this allows the next batches to be loaded while the current one is being used, drastically reducing latency and improving throughput at the cost using additional memory.\\
 Only the training dataset is shuffled as it is not really necessary with the validation dataset, since it is only used for evaluation.
 
@@ -181,7 +181,7 @@ For each tested model the following data will be reported:
 \item Comments on the architecture and results
 \end{itemize}
 In the layer tables the input  layer will not be reported, as it always corresponds to resized image size (\texttt{144,256,3}).\\
-Also note that some abbreviations are used in the Layer Config field in order to allow for the table to fit:
+Also note that some abbreviations are used in the Layer Config field in order for the table to fit:
 \begin{itemize}
 \item \texttt{k} stands for \texttt{kernel size}
 \item \texttt{s} stands for \texttt{strides}

@@ -72,9 +72,9 @@
 	\end{tabular}
 \end{table}
 
-This iteration of this model adds batch normalization in order to further improve general performance.\\
+This iteration of the model adds batch normalization in order to further improve general performance.\\
 Adding batch normalization caused the model the train much faster, but this presented a problem: the training was very biased towards the training set from the first epoch. This led to a very big gap in validation and train accuracy, in the order of 0.75 against 0.14 after the first epoch.\\
-To counter this negative effect, the starting learning rate was reduced to 0.00005, which allowed for much better results. The slower learning called for an increasing number of epochs.
+To counter this negative effect, the starting learning rate was reduced to 0.00005, which allowed for much better results. The slower learning called for an increased number of epochs.
 
 
 
