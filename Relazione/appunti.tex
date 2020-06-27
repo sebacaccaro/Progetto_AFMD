@@ -147,22 +147,21 @@ The author of dataset already performed brightness adjustment, noise reduction a
 All images are in PNG format with a 1280 x 720 resolution.
 
 \subsection{Preprocessing}
-In this section the following preprocessing techniques applied to the considered dataset will be discussed:
+Taking into consideration what has already been said about the images, it is clear that there is no need to apply other forms of corrections. Therefore, the only steps necessary prior to the train phase are:
 \begin{itemize}
-	\item image scaling
-	\item training and validation sets creation
+	\item Image scaling and decoding
+	\item Dataset loading and batch splitting
 \end{itemize}
 
-Regarding the image scaling, the given images have a size of 720x1280; to not overload the memory of the computing machine it has been reduced by 5 times resulting in a size of 140x256 per image.
-For the training and validation sets, they have been created starting from two text files, provided with the dataset, listing all the images that needed to be used for the training or validation phases.
-The training dataset array has then been processed using shuffling, batching and repeating techniques to prepare it for the learning process.
-The validation dataset array has instead been processed using only batching and repeating; for both the datasets, the batches size has been 
-set to 32 images per batch.
+\subsubsection{Image Scaling}
+All the images come in a 1280x70 resolution. Working with such high resolution it's not recommended when training a CNN as it would take a big tall on the training speed due to the increasing number of parameters and RAM usage. For this reason all image are reduced by scale factor of 5, bringing their resolution to 140x256.\\
+Every image is also decoded in a 3D tensor with 3 channels corresponding to its RGB values.
 
-The training dataset has also been processed using the prefetch technique, this
-allows later elements to be prepared while the current element is being
-processed. This often improves latency and throughput, at the cost of
-using additional memory to store prefetched elements.
+\subsubsection{Dataset loading and batch splitting}
+For both the training and the validation datasets a list is created containing the path of their images. Every element in the lists is then mapped to an image-label. The lists are then used to create the actual dataset variables.\\
+Each dataset is divided in batches. After some tweaking, a number of 32 elements per batch proved to be  optimal for the considered application.\\
+Each dataset is set to repeat, allowing for multiple epochs of training on the same batches. Moreover the two datasets are set to be prefetched: this allows the next batches to be loaded while the current one is being used, drastically reducing latency and improving throughput at the cost using additional memory.\\
+The train dataset is also shuffled. This is not really necessary with the validation dataset, as it is only used for evaluation.
 
 
 %esporre i modelli usati e i relativi risultati in ordine temporale in modo da fornire una sequenza dei ragionamenti fatti
