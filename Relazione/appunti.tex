@@ -5,7 +5,53 @@
 
 % Questo comando importa i miei comandi personali che semplificano due o tre cagate
 \input{.Latex_stuff/commands.tex}
+%\usepackage[demo]{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\renewcommand\UrlFont{\color{blue}\rmfamily}
+\usepackage{tikz}
+\newcommand{\lira}{%
+\begin{tikzpicture}[x=0.08em, y=0.08em, xscale=0.03, yscale=-0.03, inner sep=0pt, outer sep=0pt]
+\fill (54.3355,9.3092) .. controls (70.3869,9.3092) and (79.7110,9.3092) ..
+  (82.3075,9.3092) .. controls (82.3075,12.1418) and (82.3075,24.2985) ..
+  (82.3075,45.7791) .. controls (82.3075,67.2598) and (82.3075,79.2984) ..
+  (82.3075,81.8950) -- (167.2860,51.0903) .. controls (167.2860,59.3521) and
+  (167.2860,66.7877) .. (167.2860,73.3971) -- (82.3075,104.2018) .. controls
+  (82.3075,105.1460) and (82.3075,107.1525) .. (82.3075,110.2211) .. controls
+  (82.3075,113.2898) and (82.3075,115.2962) .. (82.3075,116.2404) --
+  (128.3375,99.9529) -- (167.2860,85.4358) .. controls (167.2860,86.8521) and
+  (167.2860,90.4518) .. (167.2860,96.2351) .. controls (167.2860,102.0184) and
+  (167.2860,105.5001) .. (167.2860,106.6804) .. controls (167.2860,107.6246) and
+  (167.0499,108.0967) .. (166.5778,108.0967) -- (84.7861,137.4851) .. controls
+  (83.8419,137.9572) and (83.0157,138.4293) .. (82.3075,138.9014) .. controls
+  (82.3075,153.3005) and (82.3075,173.1878) .. (82.3075,198.5633) .. controls
+  (82.3075,223.9388) and (82.3075,243.8262) .. (82.3075,258.2253) .. controls
+  (82.3075,258.2253) and (82.3075,258.3433) .. (82.3075,258.5794) .. controls
+  (82.3075,258.8154) and (82.3075,258.9334) .. (82.3075,258.9334) .. controls
+  (103.7882,256.3369) and (122.7903,248.1931) .. (139.3139,234.5021) .. controls
+  (157.4899,219.6309) and (169.6465,201.1009) .. (175.7838,178.9121) .. controls
+  (178.3804,168.7619) and (179.6787,158.6117) .. (179.6787,148.4614) .. controls
+  (179.6787,148.4614) and (189.1207,148.4614) .. (208.0048,148.4614) .. controls
+  (208.0048,171.3584) and (202.4576,192.9571) .. (191.3632,213.2575) .. controls
+  (183.5735,228.8369) and (172.9512,242.2918) .. (159.4963,253.6223) .. controls
+  (146.9856,264.7167) and (132.9405,273.2145) .. (117.3611,279.1158) .. controls
+  (97.0607,286.9055) and (76.0522,289.6201) .. (54.3355,287.2596) .. controls
+  (54.3355,271.9163) and (54.3355,248.9013) .. (54.3355,218.2146) .. controls
+  (54.3355,187.5279) and (54.3355,164.3949) .. (54.3355,148.8155) .. controls
+  (54.3355,148.8155) and (52.8011,149.4057) .. (49.7325,150.5859) --
+  (1.2239,167.9357) .. controls (1.2239,160.8541) and (1.2239,153.4185) ..
+  (1.2239,145.6288) -- (54.3355,126.5087) .. controls (54.3355,125.0924) and
+  (54.3355,120.9615) .. (54.3355,114.1160) .. controls (51.7389,115.2962) and
+  (48.2571,116.7126) .. (43.8902,118.3649) .. controls (39.5232,120.0173) and
+  (36.7496,120.9615) .. (35.5694,121.1975) -- (7.5973,131.4658) .. controls
+  (7.5973,131.4658) and (6.8301,131.7018) .. (5.2958,132.1739) .. controls
+  (3.7615,132.6460) and (2.4042,133.0001) .. (1.2239,133.2361) .. controls
+  (1.2239,121.9057) and (1.2239,114.4701) .. (1.2239,110.9293) --
+  (54.3355,92.1632) .. controls (54.3355,81.7770) and (54.3355,67.9680) ..
+  (54.3355,50.7362) .. controls (54.3355,33.5045) and (54.3355,19.6955) ..
+  (54.3355,9.3092) -- cycle;
 
+\end{tikzpicture}}
 
 
 \sloppy
@@ -37,19 +83,70 @@
 
 \newpage
 \section{Introduction}
-The Objective of this project is to build a Turkish Lira banknotes image recognizer through a Convolutional Neural Network.
-The proposed solution, based on Tensorflow libraries, contains steps to dinamically download the dataset, preprocess the images in it and use the processed images to train a 
-Convolutional Neural Network in recognizing and classifying them.
-Since the given dataset contains many images and since the request is to classify some precise details of them, it's expected to achieve good results from the proposed solution and in particular
-from the proposed model.
+
+The goal of this project is to build and train a classifier for Turkish Liras based on the \textit{Turkish Lira Banknote Dataset} (\autoref{sec:dataset}).\\
+The classifier is developed using Convolutional Neural Networks (from now on CNN). The CNN is coded using python3 and using the Tensorflow and Keras libraries.
+
+\subsection{References and sources}
+In order to develop the project some other sources other than the ones given during the course were consulted: all the links are cited in the \textit{Reference} section of this document.\\
+The sources include also some links from the \textit{Tensorflow official documentation} from which most of the code in the project has been adapted.
+
+\subsection{Links}
+All of the code from the project is available at the following link:
+\begin{center}
+\url{https://github.com/sebacaccaro/Progetto_AFMD}
+\end{center}
+The code is available both in a python file and in a notebook which is meant to be run on Google Colab. \\
+Note that in both cases a Kaggle API key is needed in order download the dataset and run the code.
+
+
+
+
+
 
 \newpage
-\section{The Turkish Lira banknotes dataset}
-The chosen dataset <add ref> is originally composed of 6000 images of Turkish Lira banknotes, 
-organized in folders grouping banknotes by their value and already splitted in training and validation set.
+\section{Dataset}
+\label{sec:dataset}
+The dataset used for the project is the \textit{Turkish Lira Banknote Dataset}, available at the following link:
+\begin{center}
+\url{https://www.kaggle.com/baltacifatih/turkish-lira-banknote-dataset}
+\end{center}
 
-\newpage
-\subsection{Preprocessing techniques applied to the dataset}
+The dataset is composed by 6000 images of Turkish Lira Banknotes, organized as follows:
+\begin{itemize}
+\item 1000 pictures of 5\lira\ banknotes
+\item 1000 pictures of 10\lira\ banknotes
+\item 1000 pictures of 20\lira\ banknotes
+\item 1000 pictures of 50\lira\ banknotes
+\item 1000 pictures of 100\lira\ banknotes
+\item 1000 pictures of 200\lira\ banknotes
+\end{itemize}
+
+Images are already splitted in \textit{train} and \textit{validation}. The training set contains 925 images for each banknote, leading to 92.5\% of the images (5550) begin used for training and the remaining 7.5\% (450) being used for validation.
+
+\subsection{Images}
+All the pictures in the dataset consist of picture of banknotes taken with different perspectives and conditions: some are just laying on different surfaces, some are held in hand, blurred, folded or partially out of frame, ecc.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{Immagini/folded}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{Immagini/plain}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Example of images of 20\lira\ banknotes }
+\label{fig:test}
+\end{figure}
+
+The author of dataset already performed brightness adjustment, noise reduction and image flipping when necessary.\\
+All images are in PNG format with a 1280 x 720 resolution.
+
+\subsection{Preprocessing}
 In this section the following preprocessing techniques applied to the considered dataset will be discussed:
 \begin{itemize}
 	\item image scaling
@@ -67,16 +164,6 @@ allows later elements to be prepared while the current element is being
 processed. This often improves latency and throughput, at the cost of
 using additional memory to store prefetched elements.
 
-
-
-\newpage
-\subsection{Considered algorithms and their implmentation}
-?
-
-%meglio fare una sezione a riguardo secondo me, ci mettiamo tutta la parte sul batching, memorizzazione , uso di disco e ram e scaling delle immagini  
-\newpage
-\section{Scalability of the proposed solution}
-The Scalability of this project is granted by (batching, caching, img scaling, ? ...) 
 
 %esporre i modelli usati e i relativi risultati in ordine temporale in modo da fornire una sequenza dei ragionamenti fatti
 \newpage
