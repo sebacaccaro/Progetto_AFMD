@@ -377,4 +377,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+#Dataset e files
+Codice/dataset/*
+Codice/*.zip
+
+
 # End of https://www.gitignore.io/api/latex,python 
