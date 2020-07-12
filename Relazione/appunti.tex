@@ -7,6 +7,7 @@
 \input{.Latex_stuff/commands.tex}
 %\usepackage[demo]{graphicx}
 \usepackage{caption}
+\usepackage{arydshln}
 \usepackage{subcaption}
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 \usepackage{tikz}
@@ -59,10 +60,10 @@
 
 \begin{titlepage}
 \begin{center}
-	\Large{\textbf{Documentation for Algorithms for Massive Datasets project: Turkish lira recognizer}}
+	\Large{\textbf{Algorithms for Massive Datasets Project:\\Turkish lira recognizer}}
 \vfill
-\normalsize{Caccaro Sebastiano}\\
-\normalsize{Cavagnino Matteo}\\
+\normalsize{Caccaro Sebastiano, Mat. 958683}\\
+\normalsize{Cavagnino Matteo, Mat. 961707}\\
 \normalsize{A.A.2019/2020}
 \end{center}
 \end{titlepage}
@@ -96,8 +97,7 @@ All of the code from the project is available at the following link:
 \begin{center}
 \url{https://github.com/sebacaccaro/Progetto_AFMD}
 \end{center}
-The code is available both in a python file and in a notebook which is meant to be run on Google Colab. \\
-Note that in both cases a Kaggle API key is needed in order download the dataset and run the code.
+The code consists of a notebook which is meant to be run on Google Colab. In order to execute it, a Kaggle API in JSON format is needed
 
 
 
@@ -143,7 +143,7 @@ All the pictures in the dataset consist of picture of banknotes taken with diffe
 \label{fig:test}
 \end{figure}
 
-The author of dataset already performed brightness adjustment, noise reduction and image flipping when necessary.\\
+The author of the dataset already performed brightness adjustment, noise reduction and image flipping when necessary.\\
 All images are in PNG format with a 1280 x 720 resolution.
 
 \subsection{Preprocessing}
@@ -166,6 +166,11 @@ Each dataset is divided into batches. After some tweaking, a number of 32 elemen
 Each dataset is set to repeat, allowing for multiple epochs of training on the same batches. Moreover, the training dataset is set to be prefetched: 
 this allows the next batches to be loaded while the current one is being used, drastically reducing latency and improving throughput at the cost using additional memory.\\
 Only the training dataset is shuffled as it is not really necessary with the validation dataset, since it is only used for evaluation.
+
+\subsubsection{Caching}
+During testing, the dataset has been set to be cached in RAM to significantly reduce training time. The dataset used in the project occupies about 3GB, and with image resizing it comfortably fits in memory. This may not be true for larger datasets. Just trying to cache the project dataset without images resizing causes the memory to get filled up and crash the Google Colab instance, as the dimensions inflates when converting images to tensors.\\
+Because of this, we can safely assume caching would not work for larger datasets.
+
 
 
 \newpage
@@ -233,18 +238,60 @@ Also note that some abbreviations are used in the Layer Config field in order fo
 
 
 
-
-
 \newpage
-\section{Conclusions}
-As seen in the previous sections, after a few experiments, this project has been succesful in classifying the images of Turkish 
-Lira banknotes with high accuracy and low data loss.
-(altro?) aggiungere migliori risultati ottenuti - 
+\section{Scalability}
+So far, the dataset has been fully cached in RAM during training. This is a viable solution when the dataset is quite small, but it couldn't work with bigger datasets.\\
+The goal is to be able to perform training on larger datasets, without losing too much in training speed. In order to assess training speed the following procedure id used:
+\begin{itemize}
+\item All the tried solutions are measured on the first model.
+\item During training, the timestamp of every epoch end is saved on a list.
+\item After training, the average time between epochs end is calculated. This is the measure used to assess training speed.
+\end{itemize}
+
+\subsection{No caching}
+The first step is not to cache anything and run the model strait away. This solution would possibly work for any dataset, but it is tremendously slow (even with prefetch enabled).
+As a result, it is not recommend to use this solution.
+
+\subsection{File caching}
+This technique uses a file to cache the dataset. This greatly increases performance, but the cache file can take up some space. Moreover, the first epoch of training will take some time to execute, as the cache file need to be exectu
+
+\subsection{TFRecords}
+As seen in the previous solutions, the main bottleneck in training is in fetching the data from the storage. In order to speed up this phase, it is possible to serialize the dataset in order to be able to access data much quicker. This process is showcased in the second notebook.\\
+ Training speed performance at this point is notably improved, but there is a significant slowdown at the beginning of every epoch. In order to reduce it, images are resized before creating the TFRecord. This has two advantages:
+\begin{itemize}
+\item The TFRecord file itself is smaller, and therefore faster to read and process
+\item Images do not need to be resized multiple times during the training process
+\end{itemize}
+ 
+\subsection{Results}
+\begin{table}
+	\centering
+	\begin{tabular}{ccc}
+	\textbf{Technique} & \textbf{Seconds per Epoch} & \textbf{Disk space*}\\ \hline
+	Memory Caching 				& 3.1216 & /\\ \hdashline
+	No Caching					& 117.6890 & / \\
+	TFRecords 					& 8.8295 & \ 279.51 Mb (07.58\%)\\
+	File Caching					& 7.0811	 & 2534.45 Mb (68.75\%)\\
+	File Caching with pre-resizing & 3.8539 & 2534.45 Mb (68.75\%)\\
+	File Caching and TFRecords 	& 4.0606 &2733.10 Mb (74,14\%)\\
+	\end{tabular}
+	%TOTAL = 3686.4
+	\captionsetup{labelformat=empty}
+	\caption{\textit{*Disk space is shown both as a absolute value and as percentage of the original uncompressed dataset}}
+\end{table}
+
+Results show it is possible to have comparable training speed with larger datasets if some time is invested upfront in serializing or caching the dataset.\\
+After analyzing the results, the following considerations can be made:
+\begin{itemize}
+\item File caching with pre-resizing is the fastest solution, but it requires a lot of disk space, which could be a problem when dealing with big datasets. If such space is available it is the preferred solution.
+\item TFRecords seem the most viable solution. Although it's marginally slower solution than File Caching (2x slowdown), it's much more convenient in terms of disk space:
+\begin{itemize}
+\item The required space is one order of magnitude smaller than File Caching
+\item When creating a TFRecord it is possible, as it is performed in the notebook, to delete a raw image pair after writing it on the record. This means that, as long as the dataset fits on disk, this a viable solution. It would also be possible to perform the serialization on a more powerful machine (or distributed system) and perform the training on a platform where the original dataset may not have fitted in a raw format.
+\end{itemize}
+\end{itemize}
 
 
-
-
-Esempio di citazione\cite{latexcompanion}
 
 \newpage
 \addcontentsline{toc}{section}{References}
@@ -272,6 +319,10 @@ A Comprehensive Guide to Convolutional Neural Networks — the ELI5 way\\
 \bibitem{CNNGuide2}
 A guide to an efficient way to build neural network architectures- Part II: Hyper-parameter selection and tuning for Convolutional Neural Networks using Hyperas on Fashion-MNIST\\
 \url{https://towardsdatascience.com/a-guide-to-an-efficient-way\\-to-build-neural-network-architectures-part-ii-hyper-parameter-42efca01e5d73} 
+
+\bibitem{CNNGuide2}
+TFRecords\\
+\url{https://www.tensorflow.org/tutorials/load_data/tfrecord}
 
 \bibitem{notebook}
 Prof. Notebook on deep learning\\
