@@ -84,7 +84,7 @@
 
 \newpage
 \section{Introduction}
-
+% @errore tecnicamente Keras è una classe di tf, a volte viene considerata una libreria ho visto, fai tu 
 The goal of this project is to build and train a classifier for Turkish Liras based on the \textit{Turkish Lira Banknote Dataset} (\autoref{sec:dataset}).\\
 The classifier is developed using Convolutional Neural Networks (from now on CNN). The CNN is coded using python3 and using the Tensorflow and Keras libraries.
 
@@ -97,7 +97,8 @@ All of the code from the project is available at the following link:
 \begin{center}
 \url{https://github.com/sebacaccaro/Progetto_AFMD}
 \end{center}
-The code consists of a notebook which is meant to be run on Google Colab. In order to execute it, a Kaggle API in JSON format is needed
+% @errore ho aggiunto key
+The code consists of a notebook which is meant to be run on Google Colab. In order to execute it, a Kaggle API key in JSON format is needed
 
 
 
@@ -125,6 +126,7 @@ The dataset is composed by 6000 images of Turkish Lira Banknotes, organized as f
 Images are already splitted in \textit{train} and \textit{validation}. The training set contains 925 images for each banknote, leading to 92.5\% of the images (5550) begin used for training and the remaining 7.5\% (450) being used for validation.
 
 \subsection{Images}
+% @errore c'è una ripetizione (picture)
 All the pictures in the dataset consist of picture of banknotes taken with different perspectives and conditions: some are just laying on different surfaces, some are held in hand, blurred, folded or partially out of frame, ecc.
 
 \begin{figure}[H]
@@ -154,6 +156,8 @@ Taking into consideration what has already been said about the images, it is cle
 \end{itemize}
 
 \subsubsection{Image Scaling}
+% @errore la cosa della risoluzione è gia stata detta (magari working with said resolution o qualcosa del genere?)
+% @errore tall ==> toll
 All the images come in a 1280x720 resolution. Working with such high resolution it's not 
 recommended when training a CNN as it would take a big tall on the training speed due to the increasing number of parameters and RAM usage. 
 For this reason all the images are reduced by a scale factor of 5, adjusting their resolution to 140x256.\\
@@ -240,8 +244,9 @@ Also note that some abbreviations are used in the Layer Config field in order fo
 
 \newpage
 \section{Scalability}
+% @errore corretto id=>is
 So far, the dataset has been fully cached in RAM during training. This is a viable solution when the dataset is quite small, but it couldn't work with bigger datasets.\\
-The goal is to be able to perform training on larger datasets, without losing too much in training speed. In order to assess training speed the following procedure id used:
+The goal is to be able to perform training on larger datasets, without losing too much in training speed. In order to assess training speed the following procedure is used:
 \begin{itemize}
 \item All the tried solutions are measured on the first model.
 \item During training, the timestamp of every epoch end is saved on a list.
@@ -253,6 +258,7 @@ The first step is not to cache anything and run the model strait away. This solu
 As a result, it is not recommend to use this solution.
 
 \subsection{File caching}
+% @errore fine frase, exectu è un executed?
 This technique uses a file to cache the dataset. This greatly increases performance, but the cache file can take up some space. Moreover, the first epoch of training will take some time to execute, as the cache file need to be exectu
 
 \subsection{TFRecords}
